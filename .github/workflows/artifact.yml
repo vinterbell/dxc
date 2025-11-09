@@ -74,7 +74,7 @@ jobs:
         run: cp -r ./zig-out/* ./compiled
 
       - name: Pack Artifact
-        run: cd compiled && tar czf ../${{ matrix.artifact }}.zip . && cd ..
+        run: cd compiled && tar czf ../${{ matrix.artifact }}.tar.gz . && cd ..
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -103,7 +103,7 @@ jobs:
         with:
           # draft: true
           files: |
-            ./artifacts/*.zip
+            ./artifacts/*.tar.gz
           prerelease: ${{ needs.prep.outputs.prerelease }}
           name: ${{ needs.prep.outputs.version }}
           tag_name: v${{ needs.prep.outputs.version }}
